@@ -5,11 +5,9 @@ date: "2023-01-02"
 ---
 
 1) Obviously bad - 
-‘’’
-const localItems = ref(props.items)
-‘’’
+
+`const localItems = ref(props.items)`
 
 2) well meaning but without understanding of deep vs shallow dereferencing
-‘’’
-const localItems = ref([…props.items])
-‘’’
+
+`const localItems = ref([…props.items])`
