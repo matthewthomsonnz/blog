@@ -1,0 +1,59 @@
+## Learning from the doom source code
+https://github.com/id-Software/DOOM
+
+```
+.
+├── src/
+│   ├── assets/                 # External game data (WAD files, textures, models)
+│   │   ├── textures/
+│   │   └── sounds/
+│   │
+│   ├── build/                  # Build and deployment utilities
+│   │   └── make.ts             # (M_argv and Makefile equivalent)
+│   │
+│   ├── config/                 # Global constants and definitions
+│   │   ├── definitions.ts      # doomdef.h
+│   │   └── data-types.ts       # doomdata.h, fixed-point math definitions
+│   │
+│   ├── game/                   # G_ and P_ prefixed files (Game/Physics/Logic)
+│   │   ├── game-logic.ts       # g_game.c (High-level game state, start/end level)
+│   │   ├── physics/
+│   │   │   ├── map-objects.ts  # p_mobj.c (Player, Monster, Projectile management)
+│   │   │   ├── physics-tick.ts # p_tick.c (Main physics driver for one game tic)
+│   │   │   ├── interaction.ts  # p_inter.c (Collision, damage, pickup logic)
+│   │   │   └── ai/             # (P_enemy.c logic)
+│   │   │       └── enemy-ai.ts
+│   │   └── map-effects/
+│   │       ├── special-sectors.ts # p_spec.c (Main logic for triggers, lines, sectors)
+│   │       ├── doors.ts        # p_doors.c
+│   │       └── floors-ceilings.ts # p_floors.c, p_ceilng.c
+│   │
+│   ├── interface/              # I_ and M_ prefixed files (OS/User Interaction)
+│   │   ├── system.ts           # i_system.c (Timing, global setup, main logic)
+│   │   ├── input/              # i_system.c (Event handling, keyboard/mouse)
+│   │   ├── network/            # i_net.c, d_net.c (Multiplayer layer)
+│   │   ├── sound/              # i_sound.c, s_sound.c (Audio interface and mixing)
+│   │   └── menu/               # m_menu.c, m_save.c (Menu system, save/load)
+│   │
+│   ├── rendering/              # R_ and V_ prefixed files (Graphics)
+│   │   ├── three-js-app.ts     # (V_video.c, I_video.c - The WebGL/Three.js setup)
+│   │   ├── main.ts             # r_main.c (R_RenderPlayerView, rendering coordinator)
+│   │   ├── bsp-traversal.ts    # r_bsp.c (Visibility culling and drawing order)
+│   │   ├── geometry/
+│   │   │   ├── wall-render.ts  # r_draw.c (Low-level drawing logic for walls/columns)
+│   │   │   └── flat-render.ts  # r_plane.c (Drawing floors and ceilings)
+│   │   └── sprites.ts          # r_things.c (Monster/object rendering)
+│   │
+│   ├── wad/                    # W_ prefixed files (Game Data Manager)
+│   │   ├── wad-loader.ts       # w_wad.c (The WAD file parser)
+│   │   └── texture-manager.ts  # r_data.c (Manages texture/sprite assets in memory)
+│   │
+│   ├── utils/
+│   │   ├── memory.ts           # z_zone.c (Custom memory management, if needed)
+│   │   └── tables.ts           # tables.c (Lookup tables for sine/cosine)
+│   │
+│   └── index.ts                # d_main.c, i_main.c (The application's entry point and D_DoomMain/Loop)
+│
+├── package.json
+└── tsconfig.json
+```
