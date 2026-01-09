@@ -35,7 +35,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             </header>
             <main>{children}</main>
           </div>
-          <Analytics />
+          {/*<Analytics />*/}
         </ThemeProvider>
       </body>
     </html>
